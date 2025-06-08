@@ -30,7 +30,7 @@ const Category = () => {
   
 
   const params = useParams();
-  const category = params?.category as String
+  const category = params?.category as string
 
    const [data, setData] = useState<Post[]>([])
       useEffect(()=>{
