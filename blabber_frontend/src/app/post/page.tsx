@@ -34,7 +34,7 @@ const Posts = () => {
     const handleSubmit = async (e: React.FormEvent)=>{
       e.preventDefault();
 
-      await fetch("http://localhost:8000/posts", {
+      await fetch("https://blabber-backend-9cgr.onrender.com/posts", {
         method: "post",
         headers: {
           "Content-Type":"application/json"
@@ -56,7 +56,7 @@ const Posts = () => {
         }
     
      
-        fetch("http://localhost:8000/protected", {
+        fetch("https://blabber-backend-9cgr.onrender.com/protected", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

@@ -36,7 +36,7 @@ const Profile = () => {
   // const [desc, setDesc] = useState<userDesc[]>([])
   //     useEffect(()=>{
   //       const handleDesc = async ()=>{
-  //         const res = await fetch(`http://localhost:8000/profile`, {
+  //         const res = await fetch(`https://blabber-backend-9cgr.onrender.com/profile`, {
   //           method: "get",
   //           headers: {
   //             "Content-Type" : "application/json"
@@ -58,7 +58,7 @@ const Profile = () => {
   const [data, setData] = useState<Post[]>([])
       useEffect(()=>{
         const handlePost = async ()=>{
-          const res = await fetch("http://localhost:8000/posts", {
+          const res = await fetch("https://blabber-backend-9cgr.onrender.com/posts", {
           method: "get",
           headers: {
             "Content-Type" : "application/json"
@@ -86,7 +86,7 @@ const Profile = () => {
           // const handleSubmit = async (e: React.FormEvent)=>{
           //   e.preventDefault();
       
-          //   await fetch("http://localhost:8000/profile", {
+          //   await fetch("https://blabber-backend-9cgr.onrender.com/profile", {
           //     method: "post",
           //     headers: {
           //       "Content-Type":"application/json"
@@ -109,7 +109,7 @@ const Profile = () => {
               }
           
            
-              fetch("http://localhost:8000/protected", {
+              fetch("https://blabber-backend-9cgr.onrender.com/protected", {
                 headers: {
                   Authorization: `Bearer ${token}`,
                 },

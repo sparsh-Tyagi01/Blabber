@@ -33,7 +33,7 @@ export default function Register() {
   e.preventDefault();
 
   try {
-    const res = await fetch("http://localhost:8000/register", {
+    const res = await fetch("https://blabber-backend-9cgr.onrender.com/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

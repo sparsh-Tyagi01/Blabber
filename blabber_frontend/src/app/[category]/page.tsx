@@ -35,7 +35,7 @@ const Category = () => {
    const [data, setData] = useState<Post[]>([])
       useEffect(()=>{
         const handlePost = async ()=>{
-          const res = await fetch(`http://localhost:8000/posts`, {
+          const res = await fetch(`https://blabber-backend-9cgr.onrender.com/posts`, {
           method: "get",
           headers: {
             "Content-Type" : "application/json"
@@ -61,7 +61,7 @@ const Category = () => {
            }
        
         
-           fetch("http://localhost:8000/protected", {
+           fetch("https://blabber-backend-9cgr.onrender.com/protected", {
              headers: {
                Authorization: `Bearer ${token}`,
              },
