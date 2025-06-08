@@ -12,7 +12,6 @@ export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-  Navbar: React.ReactNode
 }>) {
   return (
           <div className="flex">
