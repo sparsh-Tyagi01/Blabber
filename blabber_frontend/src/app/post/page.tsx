@@ -98,6 +98,7 @@ const Posts = () => {
                     <div>
                         <label htmlFor='category' className='text-white mr-2'>Category:</label>
                         <select id='category' name='category' value={formData.category} onChange={handleChange} required className='border-1 rounded-sm border-white focus:outline-none'>
+                            <option className='bg-black'>Choose</option>
                             <option className='bg-black'>Sports</option>
                             <option className='bg-black'>Technology</option>
                             <option className='bg-black'>Entertainment</option>
