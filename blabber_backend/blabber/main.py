@@ -47,7 +47,7 @@ def register(user: schemas.UserCreate, db: Session = Depends(get_db)):
 def login(user:schemas.UserLogin, db:Session=Depends(get_db)):
     db_user = db.query(model.User).filter(model.User.username == user.username).first()
     if not db_user or not Hash.verify(user.password, db_user.password):
-        raise HTTPException(status_code=401, detail="Invalid credentials")
+        raise HTTPException(status_code=401, detail="Invalid username or password")
 
     token = auth.create_access_token(data={"username": db_user.username, "name":db_user.name})
     return {"access_token": token, "token_type": "bearer"}
