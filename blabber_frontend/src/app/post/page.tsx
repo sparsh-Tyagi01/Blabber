@@ -62,7 +62,6 @@ const Posts = () => {
           },
         })
           .then(async (res) => {
-            const data = await res.json();
             if (!res.ok) {
               router.push("/"); 
             }
