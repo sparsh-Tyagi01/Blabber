@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 from .hashing import Hash
 
 
-model.Base.metadata.create_all(engine)
+model.Base.metadata.create_all(bind=engine)
 app = FastAPI()
 
 app.add_middleware(
