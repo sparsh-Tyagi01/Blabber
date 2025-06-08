@@ -14,11 +14,11 @@ type Post = {
   createdAt: string;
 };
 
-type userDesc = {
-  id : number;
-  description: string;
-  username: string;
-}
+// type userDesc = {
+//   id : number;
+//   description: string;
+//   username: string;
+// }
 
 const Profile = () => { 
 
@@ -33,26 +33,26 @@ const Profile = () => {
           load();
         }, []);
   
-  const [desc, setDesc] = useState<userDesc[]>([])
-      useEffect(()=>{
-        const handleDesc = async ()=>{
-          const res = await fetch(`http://localhost:8000/profile`, {
-            method: "get",
-            headers: {
-              "Content-Type" : "application/json"
-            }
-          })
-          const result = await res.json()
-          setDesc(result);
-        }
+  // const [desc, setDesc] = useState<userDesc[]>([])
+  //     useEffect(()=>{
+  //       const handleDesc = async ()=>{
+  //         const res = await fetch(`http://localhost:8000/profile`, {
+  //           method: "get",
+  //           headers: {
+  //             "Content-Type" : "application/json"
+  //           }
+  //         })
+  //         const result = await res.json()
+  //         setDesc(result);
+  //       }
 
-        handleDesc()
-      },[])
+  //       handleDesc()
+  //     },[])
 
-      const [onlydesc, setOnlydesc] = useState("")
-      useEffect(()=>{
-        desc.filter(post=>post.username==username).map(post=> setOnlydesc(post.description))
-      },[])
+      // const [onlydesc, setOnlydesc] = useState("")
+      // useEffect(()=>{
+      //   desc.filter(post=>post.username==username).map(post=> setOnlydesc(post.description))
+      // },[])
 
 
   const [data, setData] = useState<Post[]>([])
@@ -74,26 +74,26 @@ const Profile = () => {
 
       
 
-          const [formData, setFormData] = useState({
-            description: "",
-            username: ""
-          });
+          // const [formData, setFormData] = useState({
+          //   description: "",
+          //   username: ""
+          // });
       
-          const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)=>{
-            setFormData({...formData, [e.target.name]: e.target.value})
-          }
+          // const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)=>{
+          //   setFormData({...formData, [e.target.name]: e.target.value})
+          // }
       
-          const handleSubmit = async (e: React.FormEvent)=>{
-            e.preventDefault();
+          // const handleSubmit = async (e: React.FormEvent)=>{
+          //   e.preventDefault();
       
-            await fetch("http://localhost:8000/profile", {
-              method: "post",
-              headers: {
-                "Content-Type":"application/json"
-              },
-              body: JSON.stringify(formData)
-            })
-          }
+          //   await fetch("http://localhost:8000/profile", {
+          //     method: "post",
+          //     headers: {
+          //       "Content-Type":"application/json"
+          //     },
+          //     body: JSON.stringify(formData)
+          //   })
+          // }
 
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
@@ -166,7 +166,7 @@ const Profile = () => {
         <div className="flex flex-col justify-center items-center gap-2">
           <h1 className="text-white">Description</h1>
           <div className="border-1 border-white h-[30vh] w-[20vw] rounded-2xl overflow-auto hide-scrollbar text-white/70 flex justify-center items-center">
-            <textarea name='description' placeholder='Write about yourself...' value={onlydesc} onChange={handleChange} className='focus:outline-none hide-scrollbar w-[18vw] h-[28vh]'/>
+            <textarea name='description' placeholder='Write about yourself...' className='focus:outline-none hide-scrollbar w-[18vw] h-[28vh]'/>
           </div>
           <button type='submit' className='text-white bg-gray-600 py-1 px-2 rounded-xl hover:bg-gray-700 cursor-pointer mt-2'>Save</button>
         </div>

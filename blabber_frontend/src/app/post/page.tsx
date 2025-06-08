@@ -20,7 +20,6 @@ const Posts = () => {
       }, []);
   
 
-    const [message, setMessage] = useState("");
     const [formData, setFormData] = useState({
       description: "",
       username: "",
@@ -66,8 +65,6 @@ const Posts = () => {
             const data = await res.json();
             if (!res.ok) {
               router.push("/"); 
-            } else {
-              setMessage(data.message); 
             }
           })
           .catch((err) => {
