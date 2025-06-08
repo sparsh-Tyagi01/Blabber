@@ -10,10 +10,9 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,post
+  children
 }: Readonly<{
   children: React.ReactNode;
-  post: React.ReactNode
 }>) {
   return (
     <>
@@ -27,7 +26,6 @@ export default function RootLayout({
           <section>
             <Search/>
           </section>
-          {post}
         </div>
     </>    
   );
