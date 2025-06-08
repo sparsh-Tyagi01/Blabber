@@ -149,7 +149,7 @@ const Profile = () => {
             alt="profile image"
             width={200}
             height={200}
-            className="rounded-[100%] border-black border-2"
+            className="rounded-[100%] border-white border-2"
           />
           <button className="text-white cursor-pointer bg-gray-800 hover:bg-gray-900 p-1 pl-2 pr-2 rounded-xl">
             Edit Image
