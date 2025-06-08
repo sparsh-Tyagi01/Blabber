@@ -1,0 +1,15 @@
+# Ignore environment variables
+.env
+blabber_frontend/.env
+blabber_backend/.env
+
+# Ignore node stuff
+blabber_frontend/node_modules/
+blabber_frontend/.next/
+
+# Ignore Python stuff
+blabber_backend/__pycache__/
+blabber_backend/*.pyc
+
+# macOS system files
+.DS_Store
