@@ -80,11 +80,6 @@ const Home = () => {
     }, []);
 
 
-    if(loading){
-      return (
-        <Loading/>
-      )
-    }
 
   const [like, setLike] = useState(false)
   const [count, setCount] = useState(0)
@@ -116,6 +111,12 @@ const Home = () => {
 
       countLikes()
     },[])
+
+    if(loading){
+      return (
+        <Loading/>
+      )
+    }
 
   return (
     <div className='h-screen bg-black/95 w-[60vw] overflow-hidden border-x-1 border-white'>
