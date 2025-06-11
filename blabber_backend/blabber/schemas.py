@@ -16,6 +16,10 @@ class Posts(BaseModel):
     image: str
     category: str
 
+class Likes(BaseModel):
+    post_id: str
+    user_id: int
+
 class Desc(BaseModel):
     description: str
     username: str

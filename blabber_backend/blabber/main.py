@@ -28,7 +28,7 @@ def get_db():
 def register(user: schemas.UserCreate, db: Session = Depends(get_db)):
     hashed_password = Hash.bcrypt(user.password)
 
-    existing_user = db.query(model.User).filter(model.User.username == user.username | model.User.email == user.email).first()
+    existing_user = db.query(model.User).filter(model.User.username == user.username , model.User.email == user.email).first()
     if existing_user:
         raise HTTPException(status_code= status.HTTP_404_NOT_FOUND, detail="Username already exist")
     
@@ -76,6 +76,29 @@ def post_posts(request:schemas.Posts, db:Session=Depends(get_db)):
 def get_posts(db:Session=Depends(get_db)):
     post = db.query(model.AllPosts).order_by(model.AllPosts.id.desc()).all()
     return post
+
+@app.post("/like")
+def set_like(request:schemas.Likes, db:Session=Depends(get_db)):
+    existing = db.query(model.AllLikes).filter(model.AllLikes.post_id==request.post_id, model.AllLikes.user_id==request.user_id).first()
+
+    if(existing):
+        db.delete(existing)
+        db.commit()
+        return {"status": "unlike"}
+    
+    like= model.AllLikes(
+        post_id = request.post_id,
+        user_id = request.user_id
+    )
+    db.add(like)
+    db.commit()
+    db.refresh(like)
+    return {"status": "like"}
+
+@app.get("/like/{post_id}")
+def get_like(post_id: int, db:Session=Depends(get_db)):
+    count = db.query(model.AllLikes).filter(model.AllLikes.post_id==post_id).count()
+    return {"likes": count}
 
 @app.post("/profile")
 def update_desc(request:schemas.Desc, db:Session=Depends(get_db)):

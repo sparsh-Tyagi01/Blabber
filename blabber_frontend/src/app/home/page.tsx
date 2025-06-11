@@ -17,9 +17,6 @@ type Post = {
 
 const Home = () => {
 
-  const [like, setLike] = useState(false)
-  const [nolike, setNolike] = useState(0)
-
   const [loading, setLoading] = useState(true);
   
     useEffect(() => {
@@ -89,13 +86,36 @@ const Home = () => {
       )
     }
 
-    let x=0;
-    function likeHandler() {
-      x = x+1;
-      setNolike(x)
-      setLike(true)
+  const [like, setLike] = useState(false)
+  const [count, setCount] = useState(0)
+
+
+    async function likeHandler(post_id:any, user_id:any) {
+     const result = await fetch("https://blabber-backend-9cgr.onrender.com/like", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({post_id: post_id,user_id: user_id})
+     })
+     const likes = await result.json()
+     setLike(likes.status==="like")
     }
     
+    useEffect(()=>{
+      const countLikes = async ()=>{
+        const result = await fetch("https://blabber-backend-9cgr.onrender.com/like",{
+          method: "get",
+          headers: {
+            "Content-Type" : "application/json"
+          }
+        })
+        const like = await result.json()
+        setCount(like.likes)
+      }
+
+      countLikes()
+    },[])
 
   return (
     <div className='h-screen bg-black/95 w-[60vw] overflow-hidden border-x-1 border-white'>
@@ -115,7 +135,7 @@ const Home = () => {
               {post.description}
               <img src={post.image} alt='' className='rounded-xl w-[50vw] mt-1'/>
             </div>
-            <div onClick={likeHandler} className={`${like?"text-red-700":"text-white"} cursor-pointer transition-colors duration-300`}><Heart/><span className='text-white ml-0.5'>{nolike}</span></div>
+            <div onClick={()=>likeHandler(post.id,username)} className={`${like?"text-red-700":"text-white"} cursor-pointer transition-colors duration-300 flex items-center justify-center`}><Heart/><span className='text-white ml-0.5'>{count}</span></div>
             </div>
            ))}
           </div>
