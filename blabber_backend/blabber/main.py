@@ -28,7 +28,7 @@ def get_db():
 def register(user: schemas.UserCreate, db: Session = Depends(get_db)):
     hashed_password = Hash.bcrypt(user.password)
 
-    existing_user = db.query(model.User).filter(model.User.username == user.username).first()
+    existing_user = db.query(model.User).filter(model.User.username == user.username | model.User.email == user.email).first()
     if existing_user:
         raise HTTPException(status_code= status.HTTP_404_NOT_FOUND, detail="Username already exist")
     
