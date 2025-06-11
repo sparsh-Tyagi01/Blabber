@@ -90,7 +90,6 @@ const Home = () => {
     }
 
     let x=0;
-    let bg;
     function likeHandler() {
       x = x+1;
       setNolike(x)
