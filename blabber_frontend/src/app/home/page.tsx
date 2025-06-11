@@ -85,7 +85,7 @@ const Home = () => {
   const [count, setCount] = useState(0)
 
 
-    async function likeHandler(post_id:any, user_id:any) {
+    async function likeHandler(post_id:number, user_id:string) {
      const result = await fetch("https://blabber-backend-9cgr.onrender.com/like", {
       method: "post",
       headers: {
