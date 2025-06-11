@@ -135,8 +135,8 @@ const Home = () => {
               </div>
               {post.description}
               <img src={post.image} alt='' className='rounded-xl w-[50vw] mt-1'/>
+              <div onClick={()=>likeHandler(post.id,username)} className={`${like?"text-red-700":"text-white"} cursor-pointer transition-colors duration-300 flex items-center justify-center`}><Heart/><span className='text-white ml-0.5'>{count}</span></div>
             </div>
-            <div onClick={()=>likeHandler(post.id,username)} className={`${like?"text-red-700":"text-white"} cursor-pointer transition-colors duration-300 flex items-center justify-center`}><Heart/><span className='text-white ml-0.5'>{count}</span></div>
             </div>
            ))}
           </div>
