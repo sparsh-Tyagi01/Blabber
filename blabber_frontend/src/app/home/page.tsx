@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import React from 'react'
 import Loading from './loading';
+import { Heart } from 'lucide-react';
 
 type Post = {
   id: number;
@@ -15,6 +16,9 @@ type Post = {
 };
 
 const Home = () => {
+
+  const [like, setLike] = useState(false)
+  const [nolike, setNolike] = useState(0)
 
   const [loading, setLoading] = useState(true);
   
@@ -84,6 +88,14 @@ const Home = () => {
         <Loading/>
       )
     }
+
+    let x=0;
+    let bg;
+    function likeHandler() {
+      x = x+1;
+      setNolike(x)
+      setLike(true)
+    }
     
 
   return (
@@ -104,6 +116,7 @@ const Home = () => {
               {post.description}
               <img src={post.image} alt='' className='rounded-xl w-[50vw] mt-1'/>
             </div>
+            <div onClick={likeHandler} className={`${like?"text-red-700":"text-white"} cursor-pointer transition-colors duration-300`}><Heart/><span className='text-white ml-0.5'>{nolike}</span></div>
             </div>
            ))}
           </div>
