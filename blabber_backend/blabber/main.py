@@ -95,11 +95,6 @@ def set_like(request:schemas.Likes, db:Session=Depends(get_db)):
     db.refresh(like)
     return {"status": "like"}
 
-@app.get("/like/{post_id}")
-def get_like(post_id: int, db:Session=Depends(get_db)):
-    count = db.query(model.AllLikes).filter(model.AllLikes.post_id==post_id).count()
-    return {"likes": count}
-
 @app.post("/profile")
 def update_desc(request:schemas.Desc, db:Session=Depends(get_db)):
     #db.query(model.AllDesc).filter(model.AllDesc.username==request.username).delete(synchronize_session=False)

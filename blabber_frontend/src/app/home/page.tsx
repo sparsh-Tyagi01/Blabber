@@ -82,35 +82,20 @@ const Home = () => {
 
 
   const [like, setLike] = useState(false)
-  const [count, setCount] = useState(0)
 
 
-    async function likeHandler(post_id:number, user_id:string) {
+    async function likeHandler(postid:number, userid:string) {
      const result = await fetch("https://blabber-backend-9cgr.onrender.com/like", {
       method: "post",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({post_id: post_id,user_id: user_id})
+      body: JSON.stringify({post_id: postid, user_id: userid})
      })
      const likes = await result.json()
      setLike(likes.status==="like")
     }
     
-    useEffect(()=>{
-      const countLikes = async ()=>{
-        const result = await fetch("https://blabber-backend-9cgr.onrender.com/like",{
-          method: "get",
-          headers: {
-            "Content-Type" : "application/json"
-          }
-        })
-        const like = await result.json()
-        setCount(like.likes)
-      }
-
-      countLikes()
-    },[])
 
     if(loading){
       return (
@@ -135,7 +120,7 @@ const Home = () => {
               </div>
               {post.description}
               <img src={post.image} alt='' className='rounded-xl w-[50vw] mt-1'/>
-              <div onClick={()=>likeHandler(post.id,username)} className={`${like?"text-red-700":"text-white"} cursor-pointer transition-colors duration-300 flex items-center justify-center`}><Heart/><span className='text-white ml-0.5'>{count}</span></div>
+              <div onClick={()=>likeHandler(post.id,username)} className={`${like?"text-red-700":"text-white"} cursor-pointer transition-colors duration-300 flex items-center justify-center`}><Heart/></div>
             </div>
             </div>
            ))}
