@@ -81,10 +81,11 @@ const Home = () => {
 
 
 
-  const [like, setLike] = useState(false)
+  const [likedPosts, setLikedPosts] = useState<{ [key: number]: boolean }>({});
 
 
-    async function likeHandler({postid, userid}:{postid:number, userid:string}) {
+
+    async function likeHandler(postid:number, userid:string) {
      const result = await fetch("https://blabber-backend-9cgr.onrender.com/like", {
       method: "post",
       headers: {
@@ -93,7 +94,7 @@ const Home = () => {
       body: JSON.stringify({post_id: postid, user_id: userid})
      })
      const likes = await result.json()
-     setLike(likes.status==="like")
+     setLikedPosts((prev) => ({ ...prev, [postid]: likes.status === "like" }));
     }
     
 
@@ -120,7 +121,7 @@ const Home = () => {
               </div>
               {post.description}
               <img src={post.image} alt='' className='rounded-xl w-[50vw] mt-1'/>
-              <div onClick={()=>likeHandler(post.id,username)} className={`${like?"text-red-700":"text-white"} cursor-pointer transition-colors duration-300 flex items-center justify-center`}><Heart/></div>
+              <div onClick={()=>likeHandler(post.id,username)} className={`${likedPosts[post.id]?"text-red-700":"text-white"} cursor-pointer transition-colors duration-300 flex items-center justify-center`}><Heart/></div>
             </div>
             </div>
            ))}
