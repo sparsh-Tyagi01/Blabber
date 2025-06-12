@@ -21,7 +21,7 @@ class AllPosts(Base):
 class AllLikes(Base):
     __tablename__ = "likes"
     id = Column(Integer, primary_key=True, index=True)
-    post_id = Column(Integer)
+    post_id = Column(String)
     user_id = Column(String)
 
 class AllDesc(Base):
