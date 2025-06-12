@@ -91,7 +91,7 @@ const Home = () => {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({post_id: postid, user_id: userid})
+      body: JSON.stringify({post_id: String(postid), user_id: userid})
      })
      const likes = await result.json()
      setLikedPosts((prev) => ({ ...prev, [postid]: likes.status === "like" }));
