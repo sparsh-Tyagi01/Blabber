@@ -23,6 +23,7 @@ const Profile = () => {
   const userid = params?.userid as string;
 
   const [loading, setLoading] = useState(true);
+  const [check, setCheck] = useState(false)
 
   useEffect(() => {
     const load = async () => {
@@ -141,13 +142,14 @@ const Profile = () => {
       const result = await res.json();
       if (result) {
         setUrl(result);
+        setCheck(true)
       }
     };
 
     handleimage();
   }, [userid]);
 
-  if(!imageurl){
+  if(check==false){
     alert("user does not exist!")
     router.push("/home");
   }
