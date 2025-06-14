@@ -143,16 +143,16 @@ const Profile = () => {
       if (result) {
         setUrl(result);
         setCheck(true)
+        if(check==false){
+          alert("user does not exist!")
+          router.push("/home");
+        }
       }
     };
 
     handleimage();
   }, [userid]);
 
-  if(check==false){
-    alert("user does not exist!")
-    router.push("/home");
-  }
 
   if (loading) {
     return <Loading />;
