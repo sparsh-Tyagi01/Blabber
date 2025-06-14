@@ -91,7 +91,7 @@ const Home = () => {
     const result = await fetch(
       "https://blabber-backend-9cgr.onrender.com/like",
       {
-        method: "post",
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
