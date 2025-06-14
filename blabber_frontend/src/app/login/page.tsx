@@ -14,7 +14,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const res = await fetch(
-        "https://blabber-backend-9cgr.onrender.com/login",
+        "https://blabber-backend-9cgr.onrender/login",
         {
           method: "POST",
           headers: {
