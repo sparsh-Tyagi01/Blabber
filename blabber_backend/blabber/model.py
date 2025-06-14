@@ -19,11 +19,11 @@ class AllPosts(Base):
     category = Column(String)
 
 
-class AllLikes(Base):
-    __tablename__ = "likes"
-    id = Column(Integer, primary_key=True, index=True)
-    post_id = Column(Integer)
-    user_id = Column(String)
+# class AllLikes(Base):
+#     __tablename__ = "likes"
+#     id = Column(Integer, primary_key=True, index=True)
+#     post_id = Column(Integer)
+#     user_id = Column(String)
 
 class AllDesc(Base):
     __tablename__ = "Users_desc"
