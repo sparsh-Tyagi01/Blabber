@@ -147,6 +147,11 @@ const Profile = () => {
     handleimage();
   }, [userid]);
 
+  if(!imageurl){
+    alert("user does not exist!")
+    router.push("/home");
+  }
+
   if (loading) {
     return <Loading />;
   }
