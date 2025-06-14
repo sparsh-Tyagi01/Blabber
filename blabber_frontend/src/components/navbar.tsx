@@ -1,11 +1,9 @@
 import React from "react";
 import {
   ArrowBigDown,
-  HelpingHand,
   Home,
   List,
   LogOut,
-  Settings,
   User,
 } from "lucide-react";
 import Image from "next/image";
