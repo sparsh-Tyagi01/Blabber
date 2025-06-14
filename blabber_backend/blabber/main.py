@@ -11,7 +11,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://blabber-chi.vercel.app"],
+    allow_origins=["https://blabber-chi.vercel.app/"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -28,9 +28,9 @@ def get_db():
 def register(user: schemas.UserCreate, db: Session = Depends(get_db)):
     hashed_password = Hash.bcrypt(user.password)
 
-    existing_user = db.query(model.User).filter(model.User.username == user.username , model.User.email == user.email).first()
+    existing_user = db.query(model.User).filter(model.User.username == user.username or model.User.email == user.email).first()
     if existing_user:
-        raise HTTPException(status_code= status.HTTP_404_NOT_FOUND, detail="Username already exist")
+        raise HTTPException(status_code= status.HTTP_404_NOT_FOUND, detail="Username or email already exist")
     
     new_user = model.User(
         name = user.name,
@@ -95,19 +95,43 @@ def set_like(request:schemas.Likes, db:Session=Depends(get_db)):
     db.refresh(like)
     return {"status": "like"}
 
-@app.post("/profile")
-def update_desc(request:schemas.Desc, db:Session=Depends(get_db)):
-    #db.query(model.AllDesc).filter(model.AllDesc.username==request.username).delete(synchronize_session=False)
+@app.get("/likes/{userid}")
+def get_likes(userid:str, db:Session=Depends(get_db)):
+    likes = db.query(model.AllLikes).filter(model.AllLikes.user_id==userid).all()
+    return [like.post_id for like in likes]
+
+@app.post("/profile/{username}")
+def update_desc(username:str, request:schemas.Desc, db:Session=Depends(get_db)):
+    db.query(model.AllDesc).filter(model.AllDesc.username==username).delete(synchronize_session=False)
     desc = model.AllDesc(
         description = request.description,
-        username = request.username
+        username = username
     )
     db.add(desc)
     db.commit()
     db.refresh(desc)
     return "Updated"
 
-@app.get("/profile")
-def get_desc(db:Session=Depends(get_db)):
-    new_desc = db.query(model.AllDesc).all()
-    return new_desc
+@app.get("/profile/{username}")
+def get_desc(username:str, db:Session=Depends(get_db)):
+    desc = db.query(model.AllDesc).filter(model.AllDesc.username==username).first()
+    return desc
+
+@app.post("/image/{username}")
+def editDp(username:str, request: schemas.DPimg, db:Session=Depends(get_db)):
+    db.query(model.AllDPimg).filter(model.AllDPimg.username==username).delete(synchronize_session=False)
+
+    newimg = model.AllDPimg(
+        imgurl = request.imgurl,
+        username = request.username
+    )
+    db.add(newimg)
+    db.commit()
+    db.refresh(newimg)
+
+    return {"message" : "Image edited successfully"}
+
+@app.get("/image/{username}")
+def get_img(username:str, db:Session=Depends(get_db)):
+    image = db.query(model.AllDPimg).filter(model.AllDPimg.username==username).first()
+    return image

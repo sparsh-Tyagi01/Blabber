@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const Button = () => {
   return (
@@ -15,7 +15,7 @@ const Button = () => {
       </button>
     </StyledWrapper>
   );
-}
+};
 
 const StyledWrapper = styled.div`
   .button {
@@ -29,12 +29,10 @@ const StyledWrapper = styled.div`
     border-radius: var(--radius);
     background-color: var(--bg);
     transition: all 0.2s ease;
-    box-shadow:
-      inset 0 0.3rem 0.9rem rgba(255, 255, 255, 0.3),
+    box-shadow: inset 0 0.3rem 0.9rem rgba(255, 255, 255, 0.3),
       inset 0 -0.1rem 0.3rem rgba(0, 0, 0, 0.7),
       inset 0 -0.4rem 0.9rem rgba(255, 255, 255, 0.5),
-      0 3rem 3rem rgba(0, 0, 0, 0.3),
-      0 1rem 1rem -0.6rem rgba(0, 0, 0, 0.8);
+      0 3rem 3rem rgba(0, 0, 0, 0.3), 0 1rem 1rem -0.6rem rgba(0, 0, 0, 0.8);
   }
   .button .wrap {
     font-size: 55px;
@@ -92,12 +90,10 @@ const StyledWrapper = styled.div`
     );
   }
   .button:hover {
-    box-shadow:
-      inset 0 0.3rem 0.5rem rgba(255, 255, 255, 0.4),
+    box-shadow: inset 0 0.3rem 0.5rem rgba(255, 255, 255, 0.4),
       inset 0 -0.1rem 0.3rem rgba(0, 0, 0, 0.7),
       inset 0 -0.4rem 0.9rem rgba(255, 255, 255, 0.7),
-      0 3rem 3rem rgba(0, 0, 0, 0.3),
-      0 1rem 1rem -0.6rem rgba(0, 0, 0, 0.8);
+      0 3rem 3rem rgba(0, 0, 0, 0.3), 0 1rem 1rem -0.6rem rgba(0, 0, 0, 0.8);
   }
   .button:hover .wrap::before {
     transform: translateY(-5%);
@@ -111,12 +107,11 @@ const StyledWrapper = styled.div`
   }
   .button:active {
     transform: translateY(4px);
-    box-shadow:
-      inset 0 0.3rem 0.5rem rgba(255, 255, 255, 0.5),
+    box-shadow: inset 0 0.3rem 0.5rem rgba(255, 255, 255, 0.5),
       inset 0 -0.1rem 0.3rem rgba(0, 0, 0, 0.8),
       inset 0 -0.4rem 0.9rem rgba(255, 255, 255, 0.4),
-      0 3rem 3rem rgba(0, 0, 0, 0.3),
-      0 1rem 1rem -0.6rem rgba(0, 0, 0, 0.8);
-  }`;
+      0 3rem 3rem rgba(0, 0, 0, 0.3), 0 1rem 1rem -0.6rem rgba(0, 0, 0, 0.8);
+  }
+`;
 
 export default Button;

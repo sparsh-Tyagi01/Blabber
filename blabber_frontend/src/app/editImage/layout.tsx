@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "../globals.css";
 import Navbar from "@/components/navbar";
-
+import Search from "@/components/search";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -14,13 +14,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-          <div className="flex">
-          <aside>
-            <Navbar/>
-          </aside>
-          <section>
-            {children}
-          </section>
-        </div>
+    <>
+      <div className="flex">
+        <aside>
+          <Navbar />
+        </aside>
+        <section>{children}</section>
+        <section>
+          <Search />
+        </section>
+      </div>
+    </>
   );
 }

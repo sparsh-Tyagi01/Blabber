@@ -18,14 +18,21 @@ class AllPosts(Base):
     image = Column(String)
     category = Column(String)
 
+
 class AllLikes(Base):
     __tablename__ = "likes"
     id = Column(Integer, primary_key=True, index=True)
-    post_id = Column(String)
+    post_id = Column(Integer)
     user_id = Column(String)
 
 class AllDesc(Base):
     __tablename__ = "Users_desc"
     id = Column(Integer, primary_key=True, index=True)
     description = Column(String)
+    username = Column(String)
+
+class AllDPimg(Base):
+    __tablename__ = "DPimg"
+    id = Column(Integer, primary_key = True, index=True)
+    imgurl = Column(String)
     username = Column(String)

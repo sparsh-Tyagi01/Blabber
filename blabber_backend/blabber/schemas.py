@@ -17,13 +17,16 @@ class Posts(BaseModel):
     category: str
 
 class Likes(BaseModel):
-    post_id: str
+    post_id: int
     user_id: str
 
 class Desc(BaseModel):
     description: str
     username: str
 
+class DPimg(BaseModel):
+    imgurl: str
+    username: str
 
 class Token(BaseModel):
     access_token: str

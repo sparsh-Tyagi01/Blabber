@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import Loading from "./loading";
+import { useParams, useRouter } from "next/navigation";
+import Loading from "../loading";
 
 type Post = {
   id: number;
@@ -19,6 +19,9 @@ type userImg = {
 };
 
 const Profile = () => {
+  const params = useParams();
+  const userid = params?.userid as string;
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -62,30 +65,13 @@ const Profile = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    await fetch(
-      `https://blabber-backend-9cgr.onrender.com/profile/${username}`,
-      {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      }
-    );
-    alert("Profile updated.");
-  };
-
   const [desc, setDesc] = useState("");
-  const [username, setUsername] = useState("");
 
   useEffect(() => {
-    if (!username) return;
+    if (!userid) return;
     const descHandle = async () => {
       const res = await fetch(
-        `https://blabber-backend-9cgr.onrender.com/profile/${username}`,
+        `https://blabber-backend-9cgr.onrender.com/profile/${userid}`,
         {
           method: "get",
           headers: {
@@ -100,9 +86,7 @@ const Profile = () => {
     };
 
     descHandle();
-  }, [username]);
-
-  const [name, setName] = useState("");
+  }, [userid]);
 
   const router = useRouter();
 
@@ -120,15 +104,11 @@ const Profile = () => {
       },
     })
       .then(async (res) => {
-        const data = await res.json();
         if (!res.ok) {
           router.push("/");
         } else {
-          setUsername(data.username);
-          setName(data.name);
-
           const likedRes = await fetch(
-            `https://blabber-backend-9cgr.onrender.com/likes/${data.username}`
+            `https://blabber-backend-9cgr.onrender.com/likes/${userid}`
           );
           const likedIds: number[] = await likedRes.json();
           const likedMap: { [key: number]: boolean } = {};
@@ -144,28 +124,13 @@ const Profile = () => {
 
   const [likedPosts, setLikedPosts] = useState<{ [key: number]: boolean }>({});
 
-  async function likeHandler(postid: number, userid: string) {
-    const result = await fetch(
-      "https://blabber-backend-9cgr.onrender.com/like",
-      {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ post_id: postid, user_id: userid }),
-      }
-    );
-    const likes = await result.json();
-    setLikedPosts((prev) => ({ ...prev, [postid]: likes.status === "like" }));
-  }
-
   const [imageurl, setUrl] = useState<userImg | null>(null);
 
   useEffect(() => {
-    if (!username) return;
+    if (!userid) return;
     const handleimage = async () => {
       const res = await fetch(
-        `https://blabber-backend-9cgr.onrender.com/image/${username}`,
+        `https://blabber-backend-9cgr.onrender.com/image/${userid}`,
         {
           method: "get",
           headers: {
@@ -180,7 +145,7 @@ const Profile = () => {
     };
 
     handleimage();
-  }, [username]);
+  }, [userid]);
 
   if (loading) {
     return <Loading />;
@@ -189,7 +154,7 @@ const Profile = () => {
   return (
     <div className="h-screen bg-black/95 w-[60vw] overflow-auto hide-scrollbar border-x-1 border-white">
       <div className="text-white text-2xl bg-black flex justify-center items-center h-11 border-b-1 border-white">
-        {username}
+        {userid}
       </div>
       <div className="flex justify-center items-center">
         <div className="w-[30vw]">
@@ -204,22 +169,14 @@ const Profile = () => {
                   />
                 )}
               </div>
-
-              <button
-                onClick={() => router.push("/editImage")}
-                className="text-white cursor-pointer bg-gray-800 hover:bg-gray-900 p-1 pl-2 pr-2 rounded-xl"
-              >
-                Edit Image
-              </button>
             </div>
             <div className="flex flex-col items-center">
-              <h1 className="text-white text-xl">{name}</h1>
-              <h1 className="text-white/50">{username}</h1>
+              <h1 className="text-white/50">{userid}</h1>
             </div>
           </div>
         </div>
         <div className="w-[30vw]">
-          <form onSubmit={handleSubmit}>
+          <form>
             <div className="flex flex-col justify-center items-center gap-2">
               <h1 className="text-white">Description</h1>
               <div className="border-1 border-white h-[30vh] w-[20vw] rounded-2xl overflow-auto hide-scrollbar text-white/70 flex justify-center items-center">
@@ -230,25 +187,19 @@ const Profile = () => {
                   value={formData.description || desc}
                   onChange={handleChange}
                 />
-                <input type="hidden" value={username} onChange={handleChange} />
+                <input type="hidden" value={userid} onChange={handleChange} />
               </div>
-              <button
-                type="submit"
-                className="text-white bg-gray-600 py-1 px-2 rounded-xl hover:bg-gray-700 cursor-pointer mt-2"
-              >
-                Save
-              </button>
             </div>
           </form>
         </div>
       </div>
       <div>
-        <h1 className="text-white/70 ml-5 mt-4 text-xl">My Posts</h1>
+        <h1 className="text-white/70 ml-5 mt-4 text-xl">Posts</h1>
         <hr className="text-white" />
         <div className="h-[100%] w-[100%] flex justify-center items-center">
           <div className="h-[80vh] w-[55vw] mt-2 border-2 rounded-2xl overflow-auto hide-scrollbar border-double border-white text-white flex flex-col items-center">
             {data
-              .filter((post) => post.username == username)
+              .filter((post) => post.username == userid)
               .map((post) => (
                 <div key={post.id}>
                   <div className="flex flex-col justify-between text-2xs text-cyan-100 font-bold w-[50vw] border-6 border-r-12 border-r-fuchsia-500 border-t-pink-500 border-b-emerald-600 rounded-xl mt-2 mb-14 p-2">
@@ -261,12 +212,9 @@ const Profile = () => {
                       />
                       <div>
                         <p
-                          onClick={() =>
-                            likeHandler(Number(post.id), String(username))
-                          }
                           className={`${
                             likedPosts[post.id] ? "text-red-700" : "text-white"
-                          } flex items-center justify-start text-4xl mt-0.5 cursor-pointer transition-colors duration-200`}
+                          } flex items-center justify-start text-4xl mt-0.5 `}
                         >
                           ♥
                         </p>

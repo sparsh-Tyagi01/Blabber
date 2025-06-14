@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const Loader = () => {
   return (
@@ -20,11 +20,12 @@ const Loader = () => {
       </div>
     </StyledWrapper>
   );
-}
+};
 
 const StyledWrapper = styled.div`
   .pl {
-    box-shadow: 2em 0 2em rgba(0, 0, 0, 0.2) inset, -2em 0 2em rgba(255, 255, 255, 0.1) inset;
+    box-shadow: 2em 0 2em rgba(0, 0, 0, 0.2) inset,
+      -2em 0 2em rgba(255, 255, 255, 0.1) inset;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -37,7 +38,8 @@ const StyledWrapper = styled.div`
     color: white;
   }
 
-  .pl, .pl__dot {
+  .pl,
+  .pl__dot {
     border-radius: 50%;
   }
 
@@ -50,13 +52,16 @@ const StyledWrapper = styled.div`
     height: 1.5em;
   }
 
-  .pl__dot, .pl__dot:before, .pl__dot:after {
+  .pl__dot,
+  .pl__dot:before,
+  .pl__dot:after {
     animation-duration: 2s;
     animation-iteration-count: infinite;
     position: absolute;
   }
 
-  .pl__dot:before, .pl__dot:after {
+  .pl__dot:before,
+  .pl__dot:after {
     content: "";
     display: block;
     left: 0;
@@ -77,7 +82,8 @@ const StyledWrapper = styled.div`
     animation-name: pushInOut2724;
     background-color: var(--primary1);
     border-radius: 0.75em;
-    box-shadow: 0.1em 0.3em 0.2em rgba(255, 255, 255, 0.4) inset, 0 -0.4em 0.2em #2e3138 inset, 0 -1em 0.25em rgba(0, 0, 0, 0.3) inset;
+    box-shadow: 0.1em 0.3em 0.2em rgba(255, 255, 255, 0.4) inset,
+      0 -0.4em 0.2em #2e3138 inset, 0 -1em 0.25em rgba(0, 0, 0, 0.3) inset;
     bottom: 0;
     clip-path: polygon(0 75%, 100% 75%, 100% 100%, 0 100%);
     height: 3em;
@@ -90,7 +96,9 @@ const StyledWrapper = styled.div`
     z-index: 5;
   }
 
-  .pl__dot:nth-child(1), .pl__dot:nth-child(1):before, .pl__dot:nth-child(1):after {
+  .pl__dot:nth-child(1),
+  .pl__dot:nth-child(1):before,
+  .pl__dot:nth-child(1):after {
     animation-delay: 0s;
   }
 
@@ -99,7 +107,9 @@ const StyledWrapper = styled.div`
     z-index: 4;
   }
 
-  .pl__dot:nth-child(2), .pl__dot:nth-child(2):before, .pl__dot:nth-child(2):after {
+  .pl__dot:nth-child(2),
+  .pl__dot:nth-child(2):before,
+  .pl__dot:nth-child(2):after {
     animation-delay: -0.1666666667s;
   }
 
@@ -108,7 +118,9 @@ const StyledWrapper = styled.div`
     z-index: 3;
   }
 
-  .pl__dot:nth-child(3), .pl__dot:nth-child(3):before, .pl__dot:nth-child(3):after {
+  .pl__dot:nth-child(3),
+  .pl__dot:nth-child(3):before,
+  .pl__dot:nth-child(3):after {
     animation-delay: -0.3333333333s;
   }
 
@@ -117,7 +129,9 @@ const StyledWrapper = styled.div`
     z-index: 2;
   }
 
-  .pl__dot:nth-child(4), .pl__dot:nth-child(4):before, .pl__dot:nth-child(4):after {
+  .pl__dot:nth-child(4),
+  .pl__dot:nth-child(4):before,
+  .pl__dot:nth-child(4):after {
     animation-delay: -0.5s;
   }
 
@@ -126,7 +140,9 @@ const StyledWrapper = styled.div`
     z-index: 1;
   }
 
-  .pl__dot:nth-child(5), .pl__dot:nth-child(5):before, .pl__dot:nth-child(5):after {
+  .pl__dot:nth-child(5),
+  .pl__dot:nth-child(5):before,
+  .pl__dot:nth-child(5):after {
     animation-delay: -0.6666666667s;
   }
 
@@ -135,7 +151,9 @@ const StyledWrapper = styled.div`
     z-index: 1;
   }
 
-  .pl__dot:nth-child(6), .pl__dot:nth-child(6):before, .pl__dot:nth-child(6):after {
+  .pl__dot:nth-child(6),
+  .pl__dot:nth-child(6):before,
+  .pl__dot:nth-child(6):after {
     animation-delay: -0.8333333333s;
   }
 
@@ -144,7 +162,9 @@ const StyledWrapper = styled.div`
     z-index: 2;
   }
 
-  .pl__dot:nth-child(7), .pl__dot:nth-child(7):before, .pl__dot:nth-child(7):after {
+  .pl__dot:nth-child(7),
+  .pl__dot:nth-child(7):before,
+  .pl__dot:nth-child(7):after {
     animation-delay: -1s;
   }
 
@@ -153,7 +173,9 @@ const StyledWrapper = styled.div`
     z-index: 3;
   }
 
-  .pl__dot:nth-child(8), .pl__dot:nth-child(8):before, .pl__dot:nth-child(8):after {
+  .pl__dot:nth-child(8),
+  .pl__dot:nth-child(8):before,
+  .pl__dot:nth-child(8):after {
     animation-delay: -1.1666666667s;
   }
 
@@ -162,7 +184,9 @@ const StyledWrapper = styled.div`
     z-index: 4;
   }
 
-  .pl__dot:nth-child(9), .pl__dot:nth-child(9):before, .pl__dot:nth-child(9):after {
+  .pl__dot:nth-child(9),
+  .pl__dot:nth-child(9):before,
+  .pl__dot:nth-child(9):after {
     animation-delay: -1.3333333333s;
   }
 
@@ -171,7 +195,9 @@ const StyledWrapper = styled.div`
     z-index: 5;
   }
 
-  .pl__dot:nth-child(10), .pl__dot:nth-child(10):before, .pl__dot:nth-child(10):after {
+  .pl__dot:nth-child(10),
+  .pl__dot:nth-child(10):before,
+  .pl__dot:nth-child(10):after {
     animation-delay: -1.5s;
   }
 
@@ -180,7 +206,9 @@ const StyledWrapper = styled.div`
     z-index: 6;
   }
 
-  .pl__dot:nth-child(11), .pl__dot:nth-child(11):before, .pl__dot:nth-child(11):after {
+  .pl__dot:nth-child(11),
+  .pl__dot:nth-child(11):before,
+  .pl__dot:nth-child(11):after {
     animation-delay: -1.6666666667s;
   }
 
@@ -189,7 +217,9 @@ const StyledWrapper = styled.div`
     z-index: 6;
   }
 
-  .pl__dot:nth-child(12), .pl__dot:nth-child(12):before, .pl__dot:nth-child(12):after {
+  .pl__dot:nth-child(12),
+  .pl__dot:nth-child(12):before,
+  .pl__dot:nth-child(12):after {
     animation-delay: -1.8333333333s;
   }
 
@@ -213,7 +243,8 @@ const StyledWrapper = styled.div`
       box-shadow: 0.1em 0.1em 0 0.1em black, 0.8em 0 0.8em rgba(0, 0, 0, 0.5);
     }
 
-    50%, to {
+    50%,
+    to {
       box-shadow: 0.1em 0.1em 0 0.1em black, 0.3em 0 0.3em rgba(0, 0, 0, 0.3);
     }
   }
@@ -231,7 +262,8 @@ const StyledWrapper = styled.div`
       transform: translate(-71%, -71%);
     }
 
-    50%, to {
+    50%,
+    to {
       background-color: var(--bg);
       transform: translate(0, 0);
     }
@@ -250,10 +282,12 @@ const StyledWrapper = styled.div`
       clip-path: polygon(0 25%, 100% 25%, 100% 100%, 0 100%);
     }
 
-    50%, to {
+    50%,
+    to {
       background-color: var(--bg);
       clip-path: polygon(0 75%, 100% 75%, 100% 100%, 0 100%);
     }
-  }`;
+  }
+`;
 
 export default Loader;

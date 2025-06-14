@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const Loader = () => {
   return (
@@ -50,7 +50,7 @@ const Loader = () => {
       </div>
     </StyledWrapper>
   );
-}
+};
 
 const StyledWrapper = styled.div`
   .container {
@@ -480,6 +480,7 @@ const StyledWrapper = styled.div`
       transform: translate(0px, 0px);
       opacity: 1;
     }
-  }`;
+  }
+`;
 
 export default Loader;
